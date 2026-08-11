@@ -32,3 +32,34 @@ Clone repository:
 ```bash
 git clone https://github.com/versachios/HVTCoder.git
 cd HVTCoder
+```
+Cài đặt dependencies:
+
+```
+npm install
+```
+
+Tạo file .env và cấu hình các biến môi trường cần thiết.
+Khởi chạy development server:
+
+```
+npm run dev
+```
+
+Sau đó mở:
+
+```
+http://localhost:3000
+```
+
+📌 Trạng thái
+
+HVTCoder đang trong quá trình phát triển.
+
+Các tính năng và giao diện có thể tiếp tục được thay đổi, cải thiện và mở rộng.
+
+📄 License
+
+No license currently provided.
+
+<p align="center"> <strong>HVTCoder</strong><br> Born to Code, Built to Solve. </p> ```
