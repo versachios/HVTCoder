@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 220 15% 98%; /* Soft blue-gray background */
+  --foreground: 224 71.4% 4.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 224 71.4% 4.1%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 224 71.4% 4.1%;
+  --primary: 220 70% 50%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 220 20% 95%;
+  --secondary-foreground: 220 20% 15%;
+  --muted: 220 15% 95%;
+  --muted-foreground: 220 10% 40%;
+  --accent: 220 20% 95%;
+  --accent-foreground: 220 20% 15%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 15% 80%;
+  --input: 220 15% 80%;
+  --ring: 220 70% 50%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 220 15% 20%; /* Dark blue-gray background */
+  --foreground: 220 15% 85%; /* Light blue-gray text */
+  --card: 220 15% 25%; /* Slightly lighter than background */
+  --card-foreground: 220 15% 85%;
+  --popover: 220 15% 25%;
+  --popover-foreground: 220 15% 85%;
+  --primary: 220 70% 50%; /* Blue */
+  --primary-foreground: 210 40% 98%; /* White */
+  --secondary: 220 20% 30%; /* Dark muted */
+  --secondary-foreground: 220 20% 70%; /* Light muted */
+  --muted: 220 15% 30%;
+  --muted-foreground: 220 10% 60%;
+  --accent: 220 20% 30%;
+  --accent-foreground: 220 20% 70%;
+  --destructive: 0 84.2% 60.2%; /* Red */
+  --destructive-foreground: 0 0% 98%; /* White */
+  --border: 220 15% 40%;
+  --input: 220 15% 40%;
+  --ring: 220 70% 50%;
+  --radius: 0.5rem;
+}
+
+/* Animated gradient background */
+.animate-gradientShift {
+  background-image: linear-gradient(
+    45deg,
+    #00f,
+    #0ff,
+    #0f0,
+    #f0f,
+    #00f
+  );
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Network grid background pattern */
+.bg-network-grid {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,.1) 0,
+      rgba(255,255,255,.1) 1px,
+      transparent 1px,
+      transparent 50px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,.1) 0,
+      rgba(255,255,255,.1) 1px,
+      transparent 1px,
+      transparent 50px
+    );
+  background-size: 200% 200%;
+  animation: networkShift 20s linear infinite;
+}
+
+@keyframes networkShift {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* Font animation for title */
+@keyframes fontSwap {
+  0%, 100% {
+    font-family: 'Inter', sans-serif;
+  }
+  25% {
+    font-family: 'Courier New', monospace;
+  }
+  50% {
+    font-family: 'Arial', sans-serif;
+  }
+  75% {
+    font-family: 'Verdana', sans-serif;
+  }
+}
+
+.animate-fontSwap {
+  animation: fontSwap 8s linear infinite;
+}
+
+/* Dark mode overrides */
+.dark .bg-network-grid {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      rgba(0,0,0,.1) 0,
+      rgba(0,0,0,.1) 1px,
+      transparent 1px,
+      transparent 50px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0,0,0,.1) 0,
+      rgba(0,0,0,.1) 1px,
+      transparent 1px,
+      transparent 50px
+    );
+}
