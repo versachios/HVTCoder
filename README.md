@@ -27,30 +27,7 @@ HVTCoder hướng tới **học sinh đang học và luyện tập lập trình*
 
 ## 🚀 Chạy dự án
 
-Clone repository:
-
-```bash
-git clone https://github.com/versachios/HVTCoder.git
-cd HVTCoder
-```
-Cài đặt dependencies:
-
-```
-npm install
-```
-
-Tạo file .env và cấu hình các biến môi trường cần thiết.
-Khởi chạy development server:
-
-```
-npm run dev
-```
-
-Sau đó mở:
-
-```
-http://localhost:3000
-```
+Truy cập địa chỉ : **https://hvt-coder.vercel.app/** hoặc **https://versachios.github.io/HVTCoder/** để trải nghiệm HVTCoder.
 
 📌 Trạng thái
 
