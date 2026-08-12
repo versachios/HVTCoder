@@ -1,219 +1,81 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/db/prisma";
-import { analyzeCode } from "@/lib/ai/client";
-import { analysisRequestSchema } from "@/lib/validation/schemas";
 
-// Helper function to determine if error is transient and worth retrying
-const isTransientError = (error: any): boolean => {
-  // Network errors, timeouts, and certain HTTP status codes are often transient
-  if (error?.name === "FetchError" || error?.name === "TimeoutError") {
-    return true;
-  }
+export const runtime = "nodejs";
 
-  // HTTP 429 (Rate Limit) and 5xx errors are often transient
-  if (error?.status === 429 || (error?.status >= 500 && error?.status < 600)) {
-    return true;
-  }
-
-  // Some specific error messages that indicate transient issues
-  const errorMessage = error?.message?.toLowerCase() || "";
-  return (
-    errorMessage.includes("rate limit") ||
-    errorMessage.includes("timeout") ||
-    errorMessage.includes("network") ||
-    errorMessage.includes("temporary") ||
-    errorMessage.includes("overloaded")
-  );
-};
-
-// Helper function to get user-friendly error message
-const getUserFriendlyErrorMessage = (error: any): string => {
-  // Rate limit errors
-  if (error?.status === 429) {
-    return "Quá nhiều yêu cầu. Vui lòng thử lại sau một vài giây.";
-  }
-
-  // Authentication errors
-  if (error?.status === 401) {
-    return "Lỗi xác thực API. Vui lòng liên hệ với ban kỹ thuật.";
-  }
-
-  // Model not found or access denied
-  if (error?.status === 404) {
-    return "Lỗi xác thực model AI. Vui lòng liên hệ với ban kỹ thuật.";
-  }
-
-  // Server errors (5xx)
-  if (error?.status >= 500 && error?.status < 600) {
-    return "Dịch vụ AI hiện tại không ổn định. Vui lòng thử lại sau hoặc liên hệ với ban kỹ thuật.";
-  }
-
-  // Validation errors from AI
-  if (error?.message?.includes("validation")) {
-    return "Dữ liệu nhập vào không đúng yêu cầu.";
-  }
-
-  // Timeout errors
-  if (error?.message?.includes("timeout") || error?.name === "TimeoutError") {
-    return "Yêu cầu đã bị timeout.";
-  }
-
-  // Network errors
-  if (error?.name === "FetchError" || error?.message?.includes("network")) {
-    return "Lỗi internet. Kiểm tra lại mạng liên thông và thử lại.";
-  }
-
-  // Default error message
-  return "Không thể phân tích code. Liên hệ với ban kỹ thuật để giải quyết sự cố.";
-}
-/*
-// Helper function to determine if error is transient and worth retrying
-const isTransientError = (error: any): boolean => {
-  // Network errors, timeouts, and certain HTTP status codes are often transient
-  if (error?.name === "FetchError" || error?.name === "TimeoutError") {
-    return true;
-  }
-
-  // HTTP 429 (Rate Limit) and 5xx errors are often transient
-  if (error?.status === 429 || (error?.status >= 500 && error?.status < 600)) {
-    return true;
-  }
-
-  // Some specific error messages that indicate transient issues
-  const errorMessage = error?.message?.toLowerCase() || "";
-  return (
-    errorMessage.includes("rate limit") ||
-    errorMessage.includes("timeout") ||
-    errorMessage.includes("network") ||
-    errorMessage.includes("temporary") ||
-    errorMessage.includes("overloaded")
-  );
-};
-
-// Helper function to get user-friendly error message
-const getUserFriendlyErrorMessage = (error: any): string => {
-  // Rate limit errors
-  if (error?.status === 429) {
-    return "Qua nhieu yeu cau. Vui long thu lai sau mot vai giay.";
-  }
-
-  // Authentication errors
-  if (error?.status === 401) {
-    return "Loi xac thuc API. Vui lon he thong admin.";
-  }
-
-  // Model not found or access denied
-  if (error?.status === 404) {
-    return "Khong tim thay model AI. Vui lon lien he admin.";
-  }
-
-  // Server errors (5xx)
-  if (error?.status >= 500 && error?.status < 600) {
-    return "Dich vu AI tam thoi khong disponible. Vui long thu lai sau.";
-  }
-
-  // Validation errors from AI
-  if (error?.message?.includes("validation")) {
-    return "Du lieu dau vao khong hop le. Vui long kiem tra lai.";
-  }
-
-  // Timeout errors
-  if (error?.message?.includes("timeout") || error?.name === "TimeoutError") {
-    return "Yeu cau het gio. Vui long thu lai voi code ngan hon.";
-  }
-
-  // Network errors
-  if (error?.name === "FetchError" || error?.message?.includes("network")) {
-    return "Loi mang meryet. Vui long kiem tra ket noi internet va thu lai.";
-  }
-
-  // Default error message
-  return "Khong the phan tich code. Vui long thu lai sau.";
+type Verdict = {
+  tag: string;
+  tone: "teal" | "amber" | "red";
+  complexity: string;
+  note: string;
+  issue: string;
+  hint: string;
 };
 
 export async function POST(request: Request) {
   try {
-    const body = await request.json();
+    const { problem, language, code } = await request.json();
 
-    // Validate request body using the schema
-    const validationResult = analysisRequestSchema.safeParse(body);
-    if (!validationResult.success) {
+    if (!problem?.trim() || !code?.trim()) {
+      return NextResponse.json({ error: "Thiếu đề bài hoặc code." }, { status: 400 });
+    }
+
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
       return NextResponse.json(
-        { error: "Invalid request data", issues: validationResult.error.format() },
-        { status: 400 }
+        { error: "Server chưa cấu hình GEMINI_API_KEY." },
+        { status: 500 }
       );
     }
 
-    const { problem, constraints, language, code } = validationResult.data;
+    const systemPrompt = `Bạn là trợ lý chấm bài lập trình thi đấu. Nhận đề bài, ngôn ngữ, và code của học sinh.
+Trả lời DUY NHẤT một JSON object đúng schema sau, không thêm chữ nào khác, không markdown:
+{
+  "tag": string (vd "Có khả năng Accepted" / "Có khả năng TLE" / "Có khả năng Wrong Answer"),
+  "tone": "teal" | "amber" | "red" (teal nếu khả năng đúng cao, amber nếu cảnh báo TLE/nghi ngờ, red nếu chắc chắn sai),
+  "complexity": string (vd "O(n log n)"),
+  "note": string (giải thích ngắn gọn 1-2 câu),
+  "issue": string (vấn đề chính phát hiện trong code, hoặc "Không phát hiện vấn đề nào." nếu code ổn),
+  "hint": string (gợi ý cải thiện cụ thể)
+}
+Viết bằng tiếng Việt, ngắn gọn, đúng trọng tâm, dựa trên đề bài và ràng buộc đã cho.`;
 
-    // Call the AI analysis function with retry logic for transient errors
-    let result;
-    let lastError;
+    const userPrompt = `Đề bài:\n${problem}\n\nNgôn ngữ: ${language}\n\nCode:\n${code}`;
 
-    // Try up to 2 times for transient errors
-    for (let attempt = 0; attempt < 2; attempt++) {
-      try {
-        result = await analyzeCode({ problem, constraints: constraints ?? "", language, code });
-        break; // Success, exit retry loop
-      } catch (error) {
-        lastError = error;
-
-        // If this is the last attempt or error is not transient, break
-        if (attempt === 1 || !isTransientError(error)) {
-          break;
-        }
-
-        // Wait a bit before retrying (exponential backoff: 100ms, 200ms)
-        await new Promise(resolve => setTimeout(resolve, 100 * Math.pow(2, attempt)));
+    const res = await fetch(
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": apiKey,
+        },
+        body: JSON.stringify({
+          system_instruction: { parts: [{ text: systemPrompt }] },
+          contents: [{ role: "user", parts: [{ text: userPrompt }] }],
+          generationConfig: {
+            temperature: 0.3,
+            responseMimeType: "application/json",
+          },
+        }),
       }
-    }
-
-    // If we exhausted retries and still have an error, throw it
-    if (!result && lastError) {
-      throw lastError;
-    }
-
-    // Save the analysis to the database
-    const analysis = await prisma.analysis.create({
-      data: {
-        problem,
-        constraints: constraints ?? null,
-        language,
-        code,
-        verdict: result.verdict,
-        confidence: result.confidence,
-        complexity: result.complexity,
-        algorithm: result.algorithm,
-        issues: result.issues,
-        edgeCases: result.edge_cases,
-        judgePrediction: result.judge_prediction,
-        codeQuality: result.code_quality,
-        hints: result.hints,
-        tests: result.tests,
-      },
-    });
-
-    // Return the result with the analysis ID
-    return NextResponse.json({
-      id: analysis.id,
-      ...result,
-    });
-  } catch (error) {
-    if (error instanceof z.ZodError) {
-      return NextResponse.json(
-        { error: "Invalid request data", issues: error.issues },
-        { status: 400 }
-      );
-    }
-
-    console.error("Analysis error:", error);
-
-    // Return user-friendly error message
-    const userFriendlyMessage = getUserFriendlyErrorMessage(error);
-    return NextResponse.json(
-      { error: userFriendlyMessage },
-      { status: error?.status >= 400 && error?.status < 500 ? error?.status : 500 }
     );
+
+    if (!res.ok) {
+      const errText = await res.text();
+      console.error("Gemini error:", errText);
+      return NextResponse.json({ error: "Không gọi được AI. Thử lại sau." }, { status: 502 });
+    }
+
+    const data = await res.json();
+    const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!content) {
+      return NextResponse.json({ error: "AI không trả về kết quả." }, { status: 502 });
+    }
+
+    const result = JSON.parse(content) as Verdict;
+    return NextResponse.json(result);
+  } catch (err) {
+    console.error("Analyze error:", err);
+    return NextResponse.json({ error: "Có lỗi xảy ra khi phân tích." }, { status: 500 });
   }
 }
-*/
