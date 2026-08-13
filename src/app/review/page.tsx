@@ -36,15 +36,22 @@ export default function ReviewPage() {
           setImages((prev) => [...prev, dataUrl]);
           setIsOcr(true);
           try {
-            const Tesseract = (await import('tesseract.js')).default;
-            const { data } = await Tesseract.recognize(dataUrl, 'vie');
+            const res = await fetch('/api/ocr', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ image: dataUrl }),
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              throw new Error(data.error || 'OCR failed');
+            }
             const text = data.text.trim();
             if (text) {
               setProblem((prev) => (prev ? prev + '\n\n' + text : text));
             }
           } catch (err) {
             console.error('OCR error:', err);
-            setError('Không đọc được ảnh, thử ảnh khác hoặc gõ tay đề bài.');
+            setError('Không đ� đọc được ảnh, thử ảnh khác hoặc gõ tay đề bài.');
           } finally {
             setIsOcr(false);
           }
@@ -71,7 +78,7 @@ export default function ReviewPage() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || 'Có lỗi xảy ra, thử lại sau.');
+        setError(data.error || 'Có l� lỗi xảy ra, thử lại sau.');
       } else {
         setResult(data as Verdict);
       }
@@ -114,14 +121,14 @@ export default function ReviewPage() {
               <div className="img-row">
                 {images.map((src, i) => (
                   <div className="img-thumb" key={i}>
-                    <img src={src} alt={`Ảnh đề bài ${i + 1}`} />
+                    <img src={src} alt={`�Ảnh đề bài ${i + 1}`} />
                     <button
                       type="button"
                       className="img-remove"
                       onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
                       aria-label="Xóa ảnh"
                     >
-                      ✕
+                      � ✕
                     </button>
                   </div>
                 ))}
@@ -184,7 +191,6 @@ export default function ReviewPage() {
           </div>
         )}
       </div>
-
-      </>
+    </>
   );
 }
