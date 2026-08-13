@@ -42,7 +42,7 @@ Viết bằng tiếng Việt, ngắn gọn, đúng trọng tâm, dựa trên đ�
     const userPrompt = `Đề bài:\n${problem}\n\nNgôn ngữ: ${language}\n\nCode:\n${code}`;
 
     const res = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
       {
         method: "POST",
         headers: {
