@@ -27,7 +27,7 @@ HVTCoder hướng tới **học sinh đang học và luyện tập lập trình*
 
 ## 🚀 Chạy dự án
 
-Truy cập địa chỉ : **https://hvt-coder.vercel.app/** hoặc **https://versachios.github.io/HVTCoder/** để trải nghiệm HVTCoder.
+Truy cập địa chỉ : **https://hvtcoder.pages.dev/** hoặc **https://versachios.github.io/HVTCoder/** để trải nghiệm HVTCoder.
 
 ## 📌 Trạng thái
 
