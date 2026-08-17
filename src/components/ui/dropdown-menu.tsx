@@ -1,5 +1,4 @@
 import * as React from "react";
-import { ChevronDown } from "lucide-react";
 
 interface DropdownMenuProps {
   children: React.ReactNode;
@@ -21,9 +20,16 @@ interface DropdownMenuItemProps {
   className?: string;
 }
 
+const DropdownMenuContext = React.createContext<{
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}>({
+  open: false,
+  setOpen: () => false,
+});
+
 export const DropdownMenu = ({ children }: DropdownMenuProps) => {
   const [open, setOpen] = React.useState(false);
-
   return (
     <DropdownMenuContext.Provider value={{ open, setOpen }}>
       <div className="relative">{children}</div>
@@ -31,30 +37,15 @@ export const DropdownMenu = ({ children }: DropdownMenuProps) => {
   );
 };
 
-const DropdownMenuContext = React.createContext<{
-  open: boolean;
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}>({
-  open: false,
-  setOpen: () => false, // This is a placeholder; the provider will override it.
-});
-
 export const DropdownMenuTrigger = ({
   children,
   className = "",
 }: DropdownMenuTriggerProps) => {
   const { open, setOpen } = React.useContext(DropdownMenuContext);
-
   return (
     <button
-      className={
-        `
-        w-full flex items-center justify-between px-4 py-3 bg-card text-input-foreground border border-input
-        rounded-md focus:ring-2 focus:ring-primary focus:outline-none
-        hover:bg-accent/50 transition-colors duration-200 hover:scale-[1.02]
-        ${className}
-        `
-      }
+      type="button"
+      className={`dropdown-trigger${className ? ` ${className}` : ""}`}
       onClick={() => setOpen(!open)}
     >
       {children}
@@ -67,21 +58,13 @@ export const DropdownMenuContent = ({
   className = "",
 }: DropdownMenuContentProps) => {
   const { open } = React.useContext(DropdownMenuContext);
-
   if (!open) return null;
-
   return (
     <div
-      className={
-        `
-        z-50 mt-2 w-56 bg-card text-card-foreground rounded-lg border border-input
-        shadow-lg shadow-black/20 transition-shadow duration-200
-        ${className}
-        `
-      }
-      style={{ position: "absolute", top: "100%", left: 0 }}
+      className={`dropdown-content${className ? ` ${className}` : ""}`}
+      role="menu"
     >
-      <div className="py-1">{children}</div>
+      {children}
     </div>
   );
 };
@@ -93,13 +76,9 @@ export const DropdownMenuItem = ({
 }: DropdownMenuItemProps) => {
   return (
     <button
-      className={
-        `
-        flex w-full items-center px-4 py-2 text-sm text-left
-        hover:bg-accent hover:text-primary-foreground transition-colors duration-200 hover:scale-[1.02]
-        ${className}
-        `
-      }
+      type="button"
+      role="menuitem"
+      className={`dropdown-item${className ? ` ${className}` : ""}`}
       onClick={onClick}
     >
       {children}

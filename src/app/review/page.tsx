@@ -51,7 +51,7 @@ export default function ReviewPage() {
             }
           } catch (err) {
             console.error('OCR error:', err);
-            setError('Không đ� đọc được ảnh, thử ảnh khác hoặc gõ tay đề bài.');
+            setError('Không đọc được ảnh, thử ảnh khác hoặc gõ tay đề bài.');
           } finally {
             setIsOcr(false);
           }
@@ -78,7 +78,7 @@ export default function ReviewPage() {
       });
       const data = await res.json();
       if (!res.ok) {
-        setError(data.error || 'Có l� lỗi xảy ra, thử lại sau.');
+        setError(data.error || 'Có lỗi xảy ra, thử lại sau.');
       } else {
         setResult(data as Verdict);
       }
@@ -121,14 +121,14 @@ export default function ReviewPage() {
               <div className="img-row">
                 {images.map((src, i) => (
                   <div className="img-thumb" key={i}>
-                    <img src={src} alt={`�Ảnh đề bài ${i + 1}`} />
+                    <img src={src} alt={`Ảnh đề bài ${i + 1}`} />
                     <button
                       type="button"
                       className="img-remove"
                       onClick={() => setImages((prev) => prev.filter((_, idx) => idx !== i))}
                       aria-label="Xóa ảnh"
                     >
-                      � ✕
+                      ✕
                     </button>
                   </div>
                 ))}
@@ -174,6 +174,7 @@ export default function ReviewPage() {
         {result && (
           <div className="result-card">
             <div className="result-head">
+              <div className={`stamp stamp-sm ${result.tone === 'red' ? 'tone-red' : ''}`}><span className="big">{result.tone === 'teal' ? 'AC' : result.tone === 'amber' ? '?!' : 'WA'}</span></div>
               <span className={`verdict tone-${result.tone}`}>{result.tag}</span>
               <span className="meta-pill">Độ phức tạp: <b>{result.complexity}</b></span>
             </div>

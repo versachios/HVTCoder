@@ -13,6 +13,7 @@ node_modules/
 !.yarn/sdks
 
 .pnpm-store/
+.codexrules
 
 # ==========================================
 # Next.js
@@ -28,6 +29,7 @@ out/
 
 build/
 dist/
+PRODUCT.md
 
 # ==========================================
 # Environment / Secrets
@@ -88,6 +90,8 @@ next-env.d.ts
 AGENTS.md
 CLAUDE.md
 prompt.txt
+DESIGN.md
+IMPROVEMENTS_SUMMARY.md
 skills-lock.json
 
 # ==========================================
@@ -151,5 +155,6 @@ vite.config.ts.timestamp-*
 # ==========================================
 
 TODO.md
+.impeccable/
 
 *.tgz

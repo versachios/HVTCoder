@@ -29,12 +29,12 @@ export async function POST(request: Request) {
 
     const ocrPrompt = `Bạn là hệ thống OCR chuyên nhận diện đề bài lập trình thi đấu.
 
-Hãy đ� đọc TOÀN B�Ộ nội dung văn bản trong ảnh và chuyển thành văn bản có thể chỉnh sửa.
+Hãy đọc TOÀN BỘ nội dung văn bản trong ảnh và chuyển thành văn bản có thể chỉnh sửa.
 
-Y�ÊU C�ẦU B�ẮT BU�ỘC:
-- Gi�iữ nguyên nội dung và thứ tự của đề bài.
-- Gi�iữ nguyên các phần như "Ví dụ", "Input", "Output", "Giải thích", "Ràng buộc", v.v.
-- Gi�iữ nguyên số, ký hiệu toán học và tên biến.
+YÊU CẦU BẮT BUỘC:
+- Giữ nguyên nội dung và thứ tự của đề bài.
+- Giữ nguyên các phần như "Ví dụ", "Input", "Output", "Giải thích", "Ràng buộc", v.v.
+- Giữ nguyên số, ký hiệu toán học và tên biến.
 - Cố gắng giữ nguyên xuống dòng và cấu trúc của đề.
 - Nhận diện chính xác các ký hiệu như <=, >=, <, >, =, %, ^, *, /, [], (), {}, |.
 - Với công thức như 10^5, a[i], O(n log n), hãy giữ đúng dạng văn bản.
@@ -47,8 +47,8 @@ Y�ÊU C�ẦU B�ẮT BU�ỘC:
 - Nếu có phần Input/Output mẫu, giữ nguyên từng dòng và số liệu.
 - Nếu có nhiều ảnh được paste, xử lý từng ảnh theo đúng thứ tự.
 
-CH�Ỉ trả về nội dung đã nhận diện.
-KH�ÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
+CHỈ trả về nội dung đã nhận diện.
+KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
 
     const res = await fetch(
       "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
