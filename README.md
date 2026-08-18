@@ -42,8 +42,9 @@ HVTCoder dành cho **học sinh đang học và luyện tập lập trình**, đ
 
 Bạn có thể truy cập và dùng thử HVTCoder trực tiếp tại:
 
-- 🌐 **Primary:** [Link chính/](https://hvtcoder.pages.dev/)
-- 🌐 **Mirror:** [Link dự phòng/](https://versachios.github.io/HVTCoder/)
+- 🌐 **Primary:** [Link chính](https://hvtcoder.pages.dev/)
+- 🌐 **Mirror:** [Link fallback](https://versachios.github.io/HVTCoder/)
+- 🌐 **Backup:** [Link dự phòng (Thường không được chú tâm nhiều)](https://hvt-coder.vercel.app/)
 
 ---
 
