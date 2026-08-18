@@ -133,7 +133,7 @@ export default function Home() {
           </div>
           <div className="stat-card">
             <div className="stat-row"><div className="num" style={{ color: 'var(--b-teal)' }}>C++ / Python</div><div className="lbl">ngôn ngữ hỗ trợ phân tích</div></div>
-            <div className="stat-row"><div className="num" style={{ color: 'var(--b-yellow)' }}>O(n log n)</div><div className="lbl">ước lượng độ phức tạp tự động</div></div>
+            <div className="stat-row"><div className="num" style={{ color: 'var(--b-orange)' }}>O(n log n)</div><div className="lbl">ước lượng độ phức tạp tự động</div></div>
             <div className="stat-row"><div className="num" style={{ color: 'var(--b-blue)' }}>24/7</div><div className="lbl">phản hồi ngay khi bạn submit</div></div>
           </div>
         </div>
@@ -153,6 +153,7 @@ export default function Home() {
           <div className="brand" style={{ fontSize: 15 }}><span className="dot"></span> HVTCoder</div>
           <div className="tag">Born to Code, Built to Solve.</div>
           <a className="tag" href="https://github.com/versachios/HVTCoder" target="_blank" rel="noopener noreferrer">github.com/versachios/HVTCoder</a>
+          <a className="tag" href="https://facebook.com/versachios/" target="_blank" rel="noopener noreferrer">Liên hệ qua Facebook với Developer </a>
         </div>
       </footer>
 

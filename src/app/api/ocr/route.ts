@@ -84,8 +84,11 @@ KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
     if (!res.ok) {
       const errText = await res.text();
       console.error("Gemini OCR error:", errText);
-      return NextResponse.json({ error: "Không gọi được AI OCR. Thử lại sau." }, { status: 502 });
-    }
+      return NextResponse.json(
+        { error: "Không gọi được AI OCR. Thử lại sau.", debug: errText, status: res.status },
+        { status: 502 }
+      );
+  }
 
     const data = await res.json();
     const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
