@@ -51,7 +51,7 @@ CHỈ trả về nội dung đã nhận diện.
 KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
 
     const res = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent",
+      "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent",
       {
         method: "POST",
         headers: {
@@ -75,7 +75,6 @@ KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
           ],
           generationConfig: {
             temperature: 0.1,
-            // We want plain text output
           },
         }),
       }
@@ -88,7 +87,7 @@ KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
         { error: "Không gọi được AI OCR. Thử lại sau.", debug: errText, status: res.status },
         { status: 502 }
       );
-  }
+    }
 
     const data = await res.json();
     const content = data.candidates?.[0]?.content?.parts?.[0]?.text;
@@ -96,12 +95,11 @@ KHÔNG trả về lời giải, nhận xét hoặc lời mở đầu.`;
       return NextResponse.json({ error: "AI OCR không trả về kết quả." }, { status: 502 });
     }
 
-    // The OCR result is the content
     const ocrText = content.trim();
 
     return NextResponse.json({ text: ocrText });
   } catch (err) {
     console.error("OCR route error:", err);
-    return NextResponse.json({ error: "Có l� lỗi xảy ra trong quá trình OCR." }, { status: 500 });
+    return NextResponse.json({ error: "Có lỗi xảy ra trong quá trình OCR." }, { status: 500 });
   }
 }

@@ -1,10 +1,3 @@
-/* =========================================================
-   HVTCoder — "Phiếu Chấm" (The Judge's Scoresheet)
-   Signature: an ink rubber-stamp verdict badge on graph paper,
-   feature cards as ICPC-style lettered problems (A–F) with
-   balloon colors, tickets with a torn/perforated edge.
-   ========================================================= */
-
 :root{
   /* paper */
   --paper:#E7ECE9; --paper-card:#F6F8F6; --paper-line:rgba(22,33,58,.08);
