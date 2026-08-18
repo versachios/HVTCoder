@@ -42,10 +42,18 @@ HVTCoder dành cho **học sinh đang học và luyện tập lập trình**, đ
 
 Bạn có thể truy cập và dùng thử HVTCoder trực tiếp tại:
 
-- 🌐 **Primary:** [https://hvtcoder.pages.dev/](https://hvtcoder.pages.dev/)
-- 🌐 **Mirror:** [https://versachios.github.io/HVTCoder/](https://versachios.github.io/HVTCoder/)
+- 🌐 **Primary:** [Link chính/](https://hvtcoder.pages.dev/)
+- 🌐 **Mirror:** [Link dự phòng/](https://versachios.github.io/HVTCoder/)
 
 ---
+
+## 📑 Hướng dẫn sử dụng : 
+
+1> Bạn truy cập website tại **đường dẫn bên trên**.
+2> Nhấn vào nút **Bắt đầu phân tích** ở màn hình homepage.
+3> Nhập đề bài (có thể nhập **text** và **hình ảnh qua clipboard**)
+4> Nhập solution của bạn.
+5> Nhận đánh giá của **HVTCoder**. Trang web sẽ sử dụng cụm từ **Likely** (Có thể) thay vì chắc chắn, nhưng hầu như sẽ đều **AC** , **TLE** , **MLE** , **WA** theo nhận định. 
 
 ## 📌 Trạng thái dự án
 
