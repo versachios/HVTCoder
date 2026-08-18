@@ -35,6 +35,12 @@ HVTCoder đang trong quá trình phát triển.
 
 Các tính năng và giao diện có thể tiếp tục được thay đổi, cải thiện và mở rộng.
 
+## ⚠️🏗️ TÌNH TRẠNG HIỆN TẠI 
+
+Web hiện tại đang bị lỗi phần OCR (đọc nội dung từ ảnh) , hiện tại mọi người cố gắng copy đề bài bằng text nha 😥
+Phần kiểm tra code vẫn đọc được và gợi ý.
+Ban kỹ thuật sẽ cố gắng khắc phục trong thời gian sớm nhất !!
+
 📄 License
 
 No license currently provided.
