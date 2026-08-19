@@ -44,7 +44,7 @@ Bạn có thể truy cập và dùng thử HVTCoder trực tiếp tại:
 
 - 🌐 **Primary:** [Link chính](https://hvtcoder.pages.dev/)
 - 🌐 **Mirror:** [Link fallback](https://versachios.github.io/HVTCoder/)
-- 🌐 **Backup:** [Link dự phòng (Thường không được chú tâm nhiều)](https://hvt-coder.vercel.app/)
+- 🌐 **Backup:** [Link dự phòng](https://hvt-coder.vercel.app/)
 
 ---
 
