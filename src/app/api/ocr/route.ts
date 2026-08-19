@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export const runtime = "edge";
 
@@ -6,7 +7,8 @@ export async function POST(request: Request) {
   try {
     const body = await request.text();
 
-    const proxyBase = process.env.GEMINI_PROXY_BASE_URL;
+    const { env } = getRequestContext();
+    const proxyBase = env.GEMINI_PROXY_BASE_URL as string | undefined;
     if (!proxyBase) {
       return NextResponse.json(
         { error: "Server chưa cấu hình GEMINI_PROXY_BASE_URL." },
