@@ -66,7 +66,9 @@ HVTCoder đang trong quá trình phát triển tích cực. Các tính năng và
 
 ## ⚠️🏗️ Tình trạng hiện tại <Developer Logs>
 
-Lỗi OCR không nhận diện text trong **ảnh đã được fix**.
+Lỗi OCR bên web của **CloudFlare** đang bị lỗi do API bị giới hạn khu vực. 
+
+Ban kỹ thuật sẽ sửa sớm nhất có thể! Trong lúc đợi fix, vui lòng truy cập [Link dự phòng](https://hvt-coder.vercel.app/) để sử dụng dịch vụ.
 
 ---
 
