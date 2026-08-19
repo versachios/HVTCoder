@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const body = await request.text();
 
     const { env } = getRequestContext();
-    const proxyBase = env.GEMINI_PROXY_BASE_URL as string | undefined;
+    const proxyBase = (env as any).GEMINI_PROXY_BASE_URL as string | undefined;
     if (!proxyBase) {
       return NextResponse.json(
         { error: "Server chưa cấu hình GEMINI_PROXY_BASE_URL." },
