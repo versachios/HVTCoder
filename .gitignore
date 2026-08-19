@@ -157,4 +157,9 @@ vite.config.ts.timestamp-*
 TODO.md
 .impeccable/
 
+.open-next/ 
+.vercel/ 
+.wrangler/ 
+.dev.vars
+
 *.tgz
