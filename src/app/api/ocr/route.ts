@@ -1,31 +1,14 @@
 import { NextResponse } from "next/server";
-import { getRequestContext } from "@cloudflare/next-on-pages";
 
 export const runtime = "edge";
-<<<<<<< Updated upstream
-=======
 
 const GEMINI_PROXY_BASE_URL = "https://hvt-coder.vercel.app";
->>>>>>> Stashed changes
 
 export async function POST(request: Request) {
   try {
     const body = await request.text();
 
-<<<<<<< Updated upstream
-    const { env } = getRequestContext();
-    const proxyBase = (env as any).GEMINI_PROXY_BASE_URL as string | undefined;
-    if (!proxyBase) {
-      return NextResponse.json(
-        { error: "Server chưa cấu hình GEMINI_PROXY_BASE_URL." },
-        { status: 500 }
-      );
-    }
-
-    const res = await fetch(`${proxyBase}/api/ocr`, {
-=======
     const res = await fetch(`${GEMINI_PROXY_BASE_URL}/api/ocr`, {
->>>>>>> Stashed changes
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body,
