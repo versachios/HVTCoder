@@ -2,6 +2,22 @@ import { NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-export async function POST() {
-  return NextResponse.json({ marker: "TEST_V2_MOI_NHAT" });
+const GEMINI_PROXY_BASE_URL = "https://hvt-coder.vercel.app";
+
+export async function POST(request: Request) {
+  try {
+    const body = await request.text();
+
+    const res = await fetch(`${GEMINI_PROXY_BASE_URL}/api/ocr`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body,
+    });
+
+    const data = await res.json();
+    return NextResponse.json(data, { status: res.status });
+  } catch (err) {
+    console.error("OCR proxy error:", err);
+    return NextResponse.json({ error: "Có lỗi xảy ra trong quá trình OCR." }, { status: 500 });
+  }
 }
