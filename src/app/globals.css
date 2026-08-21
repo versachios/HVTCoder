@@ -197,7 +197,10 @@ h2.h2{ font-size:clamp(25px,3.2vw,34px); }
 .feat-card p{ color:var(--ink-soft); font-size:14.5px; margin:0; }
 @media (min-width:640px){
   .feat-grid{ display:grid; grid-template-columns:1fr 1fr; column-gap:36px; }
-  .feat-card:nth-child(-n+2){ border-top:1.5px dashed var(--rule); }
+}
+@media (min-width:920px){
+  .feat-grid{ grid-template-columns:1fr 1fr 1fr; }
+  .feat-card:nth-child(-n+3){ border-top:1.5px dashed var(--rule); }
   .feat-card:first-child{ border-top:1.5px dashed var(--rule); }
 }
 
