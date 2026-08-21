@@ -1,19 +1,12 @@
 'use client';
 
 import Link from 'next/link';
+import SiteNav from '@/components/ui/site-nav';
 
 export default function Home() {
   return (
     <>
-      <nav className="site">
-        <div className="wrap row">
-          <div className="brand"><span className="dot"></span> HVTCoder</div>
-          <div style={{ display: 'flex', gap: 10 }}>
-            <a href="#features" className="btn btn-ghost btn-sm">Tính năng</a>
-            <Link href="/review" className="btn btn-primary btn-sm">Bắt đầu phân tích</Link>
-          </div>
-        </div>
-      </nav>
+      <SiteNav variant="home" />
 
       <header className="hero">
         <div className="wrap hero-grid">
@@ -60,13 +53,13 @@ export default function Home() {
         <div className="wrap">
           <div className="ladder-caption">// HVTCoder đồng hành cùng bạn ở mọi cấp độ</div>
           <div className="ladder-row">
-            <div className="rank" style={{ ['--rc' as any]: '#8792A3' }}><div className="node"></div><div className="label">Newbie</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#1F6E48' }}><div className="node"></div><div className="label">Pupil</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#2E6FB8' }}><div className="node"></div><div className="label">Specialist</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#2C8577' }}><div className="node"></div><div className="label">Expert</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#7B4FA0' }}><div className="node"></div><div className="label">Cand. Master</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#C99312' }}><div className="node"></div><div className="label">Master</div></div>
-            <div className="rank" style={{ ['--rc' as any]: '#AE3A2E' }}><div className="node"></div><div className="label">Grandmaster</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--ink-dim)' }}><div className="node"></div><div className="label">Newbie</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--stamp-green)' }}><div className="node"></div><div className="label">Pupil</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--b-blue)' }}><div className="node"></div><div className="label">Specialist</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--b-teal)' }}><div className="node"></div><div className="label">Expert</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--b-cyan)' }}><div className="node"></div><div className="label">Cand. Master</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--b-yellow)' }}><div className="node"></div><div className="label">Master</div></div>
+            <div className="rank" style={{ ['--rc' as any]: 'var(--stamp-red)' }}><div className="node"></div><div className="label">Grandmaster</div></div>
           </div>
         </div>
       </section>
@@ -98,8 +91,8 @@ export default function Home() {
               <p>Chỉ đúng dòng gây Runtime Error, TLE hay Wrong Answer — kèm giải thích tại sao.</p>
             </div>
 
-            <div className="feat-card" style={{ ['--tc' as any]: 'var(--b-purple)' }}>
-              <div className="feat-icon" style={{ ['--tint' as any]: 'rgba(123,79,160,.12)', ['--tc' as any]: 'var(--b-purple)' }}>D</div>
+            <div className="feat-card" style={{ ['--tc' as any]: 'var(--b-cyan)' }}>
+              <div className="feat-icon" style={{ ['--tint' as any]: 'rgba(34,211,238,.12)', ['--tc' as any]: 'var(--b-cyan)' }}>D</div>
               <h3>Theo dõi kết quả</h3>
               <p>Lưu lịch sử submit, xem tiến bộ về tốc độ giải và độ phức tạp lời giải theo thời gian.</p>
             </div>
@@ -151,7 +144,7 @@ export default function Home() {
       <footer>
         <div className="wrap row">
           <div className="brand" style={{ fontSize: 15 }}><span className="dot"></span> HVTCoder</div>
-          <div className="tag">Born to Code, Built to Solve.</div>
+          <span className="tag">Born to Code, Built to Solve.</span>
           <a className="tag" href="https://github.com/versachios/HVTCoder" target="_blank" rel="noopener noreferrer">github.com/versachios/HVTCoder</a>
           <a className="tag" href="https://facebook.com/versachios/" target="_blank" rel="noopener noreferrer">Liên hệ qua Facebook với Developer </a>
         </div>
