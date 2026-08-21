@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import Link from 'next/link';
+import SiteNav from '@/components/ui/site-nav';
 
 type Verdict = {
   tag: string;
@@ -92,11 +92,7 @@ export default function ReviewPage() {
 
   return (
     <>
-      <nav className="site">
-        <div className="wrap row">
-          <Link href="/" className="brand"><span className="dot"></span> HVTCoder</Link>
-        </div>
-      </nav>
+      <SiteNav variant="review" />
 
       <div className="wrap review-wrap">
         <div className="section-head" style={{ marginBottom: 32 }}>
