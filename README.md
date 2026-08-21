@@ -76,6 +76,7 @@ Lỗi OCR bên server Cloudflare **đã được giải quyết**.
 - [ ] 📈 **Phân tích độ phức tạp (Time/Space Complexity):** Đánh giá chi tiết Big-O của thuật toán thay vì chỉ đưa ra độ phức tạp chung chung.
 - [ ] 🌐 **Mở rộng hỗ trợ ngôn ngữ:** Tối ưu hóa khả năng phân tích cho C++, Python và Pascal.
 - [ ] 🎯 **Gợi ý Hint theo cấp độ:** Đưa ra gợi ý giải bài theo từng nấc tư duy và từng subtask thay vì chỉ gợi ý subtask cuối cùng.
+- [ ] 🥇 **Hệ thống bài tập của Hackathon:** Làm trang nộp bài quy mô nhỏ, được sử dụng trong các cuộc thi **Hackathon** của [THPT Chuyên Hoàng Văn Thụ](https://thptchuyenhoangvanthu.edu.vn/) (Khi đó: Nội dung chấm thử bài tập sẽ bị **vô hiệu hóa tạm thời.**)
 
 ---
 
@@ -83,8 +84,8 @@ Lỗi OCR bên server Cloudflare **đã được giải quyết**.
 
 - **Author:** [@versachios](https://github.com/versachios)
 
-### Liên hệ với tác giả:
-- 🔵 **Facebook:** Kết nối với mình [Tại đây](https://www.facebook.com/versachios/) *(Khuyến khích)*
+### Liên hệ với tác giả hiện tại:
+- 🔵 **Facebook:** Kết nối với mình [tại đây](https://www.facebook.com/versachios/) *(Khuyến khích)*
 - ✉️ **Email:** alterlew@gmail.com *(Không khuyến khích)*
 
 Mọi đóng góp (Pull Request) hoặc báo lỗi (Issues) đều rất được hoan nghênh. Đừng quên tặng project **1 🌟 Star** nếu bạn thấy nó hữu ích nhé!
