@@ -193,6 +193,7 @@ h2.h2{ font-size:clamp(25px,3.2vw,34px); }
 .feat-card:first-child{ border-top:1.5px dashed var(--rule); }
 .feat-card:hover{ padding-left:10px; }
 .feat-icon{ width:34px; height:34px; border-radius:var(--radius-sm); display:flex; align-items:center; justify-content:center; background:var(--tint); color:var(--tc); font-family:'Roboto Slab',serif; font-weight:800; font-size:16px; border:1.5px solid var(--tc); }
+.feat-card h3, .feat-card p{ grid-column:2; min-width:0; }
 .feat-card h3{ font-size:16px; font-weight:700; margin-bottom:6px; font-family:'Be Vietnam Pro',sans-serif; }
 .feat-card p{ color:var(--ink-soft); font-size:14.5px; margin:0; }
 @media (min-width:640px){
