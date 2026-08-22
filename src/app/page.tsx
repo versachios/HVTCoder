@@ -112,7 +112,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section" style={{ paddingTop: 0 }}>
+      <section className="section aud-section">
         <div className="wrap aud-grid">
           <div>
             <span className="kicker">Giới thiệu</span>
@@ -145,8 +145,32 @@ export default function Home() {
         <div className="wrap row">
           <div className="brand" style={{ fontSize: 15 }}><span className="dot"></span> HVTCoder</div>
           <span className="tag">Born to Code, Built to Solve.</span>
-          <a className="tag" href="https://github.com/versachios/HVTCoder" target="_blank" rel="noopener noreferrer">github.com/versachios/HVTCoder</a>
-          <a className="tag" href="https://facebook.com/versachios/" target="_blank" rel="noopener noreferrer">Liên hệ qua Facebook với Developer </a>
+          <div className="footer-icons">
+            <a
+              className="footer-icon-link"
+              href="https://github.com/versachios/HVTCoder"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 .5C5.73.5.75 5.48.75 11.75c0 5.02 3.26 9.28 7.78 10.78.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.16.69-3.83-1.52-3.83-1.52-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.52-.29-5.17-1.26-5.17-5.6 0-1.24.44-2.25 1.17-3.04-.12-.29-.51-1.45.11-3.02 0 0 .96-.31 3.14 1.16a10.9 10.9 0 0 1 5.72 0c2.18-1.47 3.13-1.16 3.13-1.16.63 1.57.24 2.73.12 3.02.73.79 1.17 1.8 1.17 3.04 0 4.35-2.66 5.31-5.19 5.59.41.35.77 1.04.77 2.11 0 1.52-.01 2.75-.01 3.12 0 .3.2.66.79.55A11.26 11.26 0 0 0 23.25 11.75C23.25 5.48 18.27.5 12 .5Z"/>
+              </svg>
+            </a>
+            <a
+              className="footer-icon-link"
+              href="https://facebook.com/versachios/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              title="Facebook"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.87h2.78l-.44 2.91h-2.34V22c4.78-.79 8.44-4.94 8.44-9.94Z"/>
+              </svg>
+            </a>
+          </div>
         </div>
       </footer>
 
