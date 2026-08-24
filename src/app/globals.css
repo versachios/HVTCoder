@@ -206,13 +206,17 @@ h2.h2{ font-size:clamp(25px,3.2vw,34px); }
 }
 
 /* ===== Audience / stats (flat rows, no boxed stat-card) ===== */
+/* Shared top rule lives on the section itself (not on .stat-card alone) so both
+   columns start flush below ONE line instead of two independently-placed rules
+   that never quite lined up with each other. */
+.section.aud-section{ border-top:2px dashed var(--rule); padding-top:44px; }
 .aud-grid{ display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start; }
 @media (max-width:860px){ .aud-grid{ grid-template-columns:1fr; } }
 .aud-list{ list-style:none; margin:22px 0 0; padding:0; display:flex; flex-direction:column; gap:13px; }
 .aud-list li{ display:flex; gap:12px; align-items:flex-start; color:var(--ink-soft); font-size:15px; }
 .aud-list .mark{ flex:none; width:20px; height:20px; margin-top:1px; color:var(--stamp-red); display:flex; align-items:center; justify-content:center; font-family:'JetBrains Mono',monospace; font-size:15px; font-weight:800; transform:rotate(-6deg); }
-.stat-card{ border-top:2px dashed var(--rule); padding-top:6px; }
-.stat-row{ display:flex; justify-content:space-between; padding:15px 0; border-bottom:1.5px dashed var(--rule); }
+.stat-card{ padding-top:2px; }
+.stat-row{ display:flex; justify-content:space-between; align-items:baseline; padding:15px 0; border-bottom:1.5px dashed var(--rule); }
 .stat-row:last-child{ border-bottom:none; }
 .stat-row .num{ font-family:'Roboto Slab',serif; font-weight:800; font-size:24px; }
 .stat-row .lbl{ color:var(--ink-soft); font-size:13.5px; max-width:20ch; text-align:right; }
@@ -227,6 +231,9 @@ h2.h2{ font-size:clamp(25px,3.2vw,34px); }
 footer{ border-top:2px dashed var(--rule); padding:32px 0; }
 footer .row{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; }
 footer .tag{ color:var(--ink-dim); font-size:13px; font-family:'JetBrains Mono',monospace; }
+.footer-icons{ display:flex; align-items:center; gap:16px; }
+.footer-icon-link{ display:flex; color:var(--ink-dim); transition:color .15s ease; }
+.footer-icon-link:hover{ color:var(--ink); }
 
 /* ===== Review page (flat two-column split, no boxed panels) ===== */
 .review-wrap{ padding:56px 24px 96px; }
