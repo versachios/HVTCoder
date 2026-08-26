@@ -85,8 +85,8 @@ Lỗi OCR bên server Cloudflare **đã được giải quyết**.
 - **Author:** [@versachios](https://github.com/versachios)
 
 ### Liên hệ với tác giả hiện tại:
-- 🔵 **Facebook:** Kết nối với mình [tại đây](https://www.facebook.com/versachios/) *(Khuyến khích)*
-- ✉️ **Email:** alterlew@gmail.com *(Không khuyến khích)*
+- 🔵 **Facebook:** Kết nối với mình [tại đây](https://www.facebook.com/versachios/)
+- ✉️ **Discord:** **@justme_tann**
 
 Mọi đóng góp (Pull Request) hoặc báo lỗi (Issues) đều rất được hoan nghênh. Đừng quên tặng project **1 🌟 Star** nếu bạn thấy nó hữu ích nhé!
 
