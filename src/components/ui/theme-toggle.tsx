@@ -29,7 +29,7 @@ export function ThemeToggle() {
       className="theme-toggle"
       onClick={toggle}
       aria-label={theme === 'dark' ? 'Chuyển sang giao diện sáng' : 'Chuyển sang giao diện tối'}
-      title={theme === 'dark' ? 'Giao diện sáng (báo giấy)' : 'Giao diện tối'}
+      title={theme === 'dark' ? 'Giao diện sáng' : 'Giao diện tối'}
     >
       {theme === 'dark' ? '☀ Sáng' : '● Tối'}
     </button>
