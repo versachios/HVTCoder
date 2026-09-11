@@ -4,6 +4,11 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 
+const TABS = [
+  { href: '/', label: 'trang_chu.tsx' },
+  { href: '/review', label: 'cham_bai.tsx' },
+];
+
 export function BrandLogo() {
   const pathname = usePathname();
   const router = useRouter();
@@ -33,10 +38,30 @@ export function BrandLogo() {
 }
 
 export default function SiteNav({ variant = 'home' }: { variant?: 'home' | 'review' }) {
+  const pathname = usePathname();
+
   return (
     <nav className="site">
       <div className="wrap row">
-        <BrandLogo />
+        <div className="tabstrip">
+          <span className="win-dots" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </span>
+          {TABS.map((tab) => {
+            const active = pathname === tab.href;
+            return (
+              <Link
+                key={tab.href}
+                href={tab.href}
+                className={`filetab${active ? ' active' : ''}`}
+              >
+                <span className="filetab-dot" aria-hidden="true"></span>
+                {tab.label}
+                <span className="filetab-close" aria-hidden="true">×</span>
+              </Link>
+            );
+          })}
+        </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           {variant === 'home' && (
             <a href="#features" className="btn btn-ghost btn-sm">

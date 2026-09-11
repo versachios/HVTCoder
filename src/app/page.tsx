@@ -8,7 +8,21 @@ export default function Home() {
     <>
       <SiteNav variant="home" />
 
-      <header className="hero">
+      <div className="page-shell">
+      <aside className="sidebar-rail">
+        <div className="rail-label">HVTCODER</div>
+        <a className="rail-item" href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}><span className="bullet">●</span> Trang chủ</a>
+        <a className="rail-item" href="#features"><span className="bullet">○</span> Tính năng</a>
+        <a className="rail-item" href="#audience"><span className="bullet">○</span> Giới thiệu</a>
+        <a className="rail-item cta" href="/review"><span className="bullet">▶</span> Chấm bài</a>
+        <div className="rail-label" style={{ marginTop: 18 }}>NGÔN NGỮ</div>
+        <div className="rail-item"><span className="bullet">○</span> C++</div>
+        <div className="rail-item"><span className="bullet">○</span> Python</div>
+      </aside>
+
+      <div className="page-main">
+
+      <header className="hero" id="top">
         <div className="wrap hero-grid">
           <div>
             <div className="eyebrow"><span className="chip">AC</span> Đánh giá bởi AI, không phải giám khảo may rủi</div>
@@ -112,7 +126,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section aud-section">
+      <section className="section aud-section" id="audience">
         <div className="wrap aud-grid">
           <div>
             <span className="kicker">Giới thiệu</span>
@@ -141,11 +155,18 @@ export default function Home() {
         </div>
       </div>
 
+      </div>
+      </div>
+
       <footer>
         <div className="wrap row">
-          <div className="brand" style={{ fontSize: 15 }}><span className="dot"></span> HVTCoder</div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
+            <div className="brand" style={{ fontSize: 15 }}><span className="dot"></span> HVTCoder</div>
+            <span className="tag">⎇ main · ✓ 0 lỗi</span>
+          </div>
           <span className="tag">Born to Code, Built to Solve.</span>
           <div className="footer-icons">
+            <span className="tag" style={{ marginRight: 4 }}>UTF-8 · C++/Python</span>
             <a
               className="footer-icon-link"
               href="https://github.com/versachios/HVTCoder"
